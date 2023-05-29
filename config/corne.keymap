@@ -1,5 +1,4 @@
 /*
- * Copyright (c) 2020 The ZMK Contributors
  * Copyright (c) 2023 Taneli Hongisto
  *
  * SPDX-License-Identifier: MIT
@@ -10,74 +9,138 @@
 #include <dt-bindings/zmk/bt.h>
 #include "keys_fi.h"
 
-#define xxx &none
-#define ___ &trans
+// Layer definitions
+#define L_DEF 0
+#define L_SYM 1
+#define L_NUM 2
+#define L_NAV 3
+#define L_FUN 4
 
-#define BASE 0
-#define NUM  1
-#define SYM  2
-#define NAV  3
-#define FUN  4
+// Abbreviations
+#define xxx &none
+#define V_UP C_VOLUME_UP
+#define V_DOWN C_VOLUME_DOWN
+#define MUTE C_MUTE
+#define PLAY C_PLAY_PAUSE
+#define NEXT C_NEXT
+#define PREV C_PREVIOUS
+
+// Configuration
+/* Key indexes:
+ *
+ * 0  1  2  3  4  5    6  7  8  9  10 11
+ * 12 13 14 15 16 17   18 19 20 21 22 23
+ * 24 25 26 27 28 29   30 31 32 33 34 35
+ *          36 37 38   39 40 41
+ */
+#define KEYS_LEFT 0  1  2  3  4  5 12 13 14 15 16 17 24 25 26 27 28 29 36 37 38
+#define KEYS_RIGHT 6  7  8  9  10 11 18 19 20 21 22 23 30 31 32 33 34 35 39 40 41
+#define TAPPING_TERM 150
+#define QUICK_TAP 330
 
 / {
-        behaviors {
-                hm: homerow_mods {
-                    compatible = "zmk,behavior-hold-tap";
-                    label = "HOMEROW_MODS";
-                    #binding-cells = <2>;
-                    tapping-term-ms = <125>;
-                    quick-tap-ms = <175>;
-                    flavor = "tap-preferred";
-                    bindings = <&kp>, <&kp>;
-                };
+    ZMK_MACRO(caret,
+        wait-ms = <0>;
+        tap-ms = <0>;
+        bindings = <&kp F_CRET &kp SPACE>;
+    )
+    ZMK_MACRO(grave,
+        wait-ms = <0>;
+        tap-ms = <0>;
+        bindings = <&kp F_GRVE &kp SPACE>;
+    )
+    ZMK_MACRO(tilde,
+        wait-ms = <0>;
+        tap-ms = <0>;
+        bindings = <&kp F_TLDE &kp SPACE>;
+    )
+
+    behaviors {
+        // Home row mods, left hand
+        hl: left_hand_positional_hold_tap {
+            compatible = "zmk,behavior-hold-tap";
+            label = "LEFT_POSITIONAL_HOLD_TAP";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <TAPPING_TERM>;
+            quick-tap-ms = <QUICK_TAP>;
+            bindings = <&kp>, <&kp>;
+            hold-trigger-key-positions = <KEYS_RIGHT>;
         };
-        
-        keymap {
-                compatible = "zmk,keymap";
-
-                base_layer {
-                        bindings = <
-    &hm LGUI ESC &kp Q &kp W &kp E &kp R &kp T              &kp Y &kp U &kp I        &kp O      &kp P           &hm FI_SQT BSPC
-    &kp TAB      &kp A &kp S &kp D &kp F &kp G              &kp H &kp J &kp K        &kp L      &kp FI_O_UMLAUT &kp FI_A_UMLAUT
-    &kp CAPS     &kp Z &kp X &kp C &kp V &kp B              &kp N &kp M &kp FI_COMMA &kp FI_DOT &kp FI_MINUS    &kp DEL
-                &kp LALT  &mo FUN  &hm LCTRL SPACE    &hm RSHIFT ENTER  &to NUM  &kp RALT
-                        >;
-                };
-
-                number_layer {
-                        bindings = <
-    xxx xxx         xxx          xxx             xxx           xxx         &kp KP_NUM  &kp KP_N7 &kp KP_N8 &kp KP_N9 xxx         &kp BSPC
-    xxx &kp KP_PLUS &kp KP_MINUS &kp KP_MULTIPLY &kp KP_DIVIDE &kp EQUAL   &kp FI_LPAR &kp KP_N4 &kp KP_N5 &kp KP_N6 &kp FI_RPAR &to SYM
-    xxx xxx         xxx          xxx             xxx           xxx         xxx         &kp KP_N1 &kp KP_N2 &kp KP_N3 &kp DOT     &kp ENTER
-                                                ___  &to BASE  ___         &kp KP_N0   &to NAV  ___
-                        >;
-                };
-
-                symbol_layer {
-                        bindings = <
-    xxx xxx xxx xxx         xxx         xxx   xxx  xxx         xxx         xxx xxx xxx
-    xxx xxx xxx &kp FI_LBRC &kp FI_RBRC xxx   xxx  &kp FI_LPAR &kp FI_RPAR xxx xxx xxx
-    xxx xxx xxx &kp FI_LT   &kp FI_GT   xxx   xxx  &kp FI_LBKT &kp FI_RBKT xxx xxx xxx
-                         ___   &to BASE ___   ___  xxx   ___
-                        >;
-                };
-
-                navigation_layer {
-                        bindings = <
-    xxx xxx      xxx      xxx       xxx        xxx   xxx      xxx      xxx    xxx       xxx xxx
-    xxx &kp LGUI &kp LALT &kp LCTRL &kp LSHIFT xxx   &kp LEFT &kp DOWN &kp UP &kp RIGHT xxx xxx
-    xxx xxx      xxx      xxx       xxx        xxx   xxx      xxx      xxx    xxx       xxx xxx
-                                ___  &to BASE  ___   ___      xxx      ___
-                        >;
-                };
-
-                function_layer {
-                        bindings = <
-    xxx xxx      xxx      xxx       xxx        xxx   &kp F12 &kp F7 &kp F8 &kp F9 xxx xxx
-    xxx &kp LGUI &kp LALT &kp LCTRL &kp LSHIFT xxx   &kp F11 &kp F4 &kp F5 &kp F6 xxx xxx
-    xxx xxx      xxx      xxx       xxx        xxx   &kp F10 &kp F1 &kp F2 &kp F3 xxx xxx
-                                     ___  ___  ___   ___  xxx  ___
-                        >;
-                };
+        // Home row mods, right hand
+        hr: right_hand_positional_hold_tap {
+            compatible = "zmk,behavior-hold-tap";
+            label = "RIGHT_POSITIONAL_HOLD_TAP";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <TAPPING_TERM>;
+            quick-tap-ms = <QUICK_TAP>;
+            bindings = <&kp>, <&kp>;
+            hold-trigger-key-positions = <KEYS_LEFT>;
         };
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+
+        default_layer {
+            bindings = <
+    /* ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮   ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮ */
+        &kp ESC     &kp Q       &kp W       &kp E       &kp R       &kp T           &kp Y       &kp U       &kp I       &kp O       &kp P       &kp BSPC
+        &kp TAB     &hl LGUI A  &hl LALT S  &hl LCTRL D &kp F       &kp G           &kp H       &kp J      &hr RCTRL K &hr RALT L &hr RGUI O_UML &kp A_UML
+        &kp LSHIFT  &kp Z       &kp X       &kp C       &kp V       &kp B           &kp N       &kp M       &kp F_COM   &kp F_DOT   &kp F_DASH  &kp RSHIFT
+    /* ╰───────────┴───────────┴───────────╮                                                                           ╭───────────┴───────────┴───────────╯ */
+                                            xxx         &mo L_FUN   &kp SPACE       &kp ENTER   &to L_SYM   xxx
+                                        /* ╰───────────┴───────────┴───────────╯   ╰───────────┴───────────┴───────────╯ */
+            >;
+        };
+
+        symbol_layer {
+            bindings = <
+    /* ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮   ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮ */
+        &grave      &kp F_PLUS  &kp F_DASH  &kp F_STAR  &kp F_SLSH  &kp F_EQ        &kp F_EURO  &kp F_POUN  &kp F_CURR  &kp N0      xxx         &kp BSPC
+        &kp F_AMP   &kp F_EXCL  &kp F_QUES  &kp F_LBRC  &kp F_RBRC  &kp F_AT        &kp F_HASH  &kp F_LPAR  &kp F_RPAR  &kp F_DQT   &kp F_SQT   &tilde
+        &kp F_PIPE  &kp F_SLSH  &kp F_BSLH  &kp F_LT    &kp F_GT    &kp F_DLLR      &kp F_PRCNT &kp F_LBKT  &kp F_RBKT  xxx         &caret      &to L_NUM
+    /* ╰───────────┴───────────┴───────────╮                                                                           ╭───────────┴───────────┴───────────╯ */
+                                            xxx         &to L_DEF   &kp SPACE       &kp ENTER   &to L_NAV   xxx
+                                        /* ╰───────────┴───────────┴───────────╯   ╰───────────┴───────────┴───────────╯ */
+            >;
+        };
+
+        number_layer {
+            bindings = <
+    /* ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮   ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮ */
+        &kp ESC     &kp F_EURO  &kp F_POUN  &kp F_CURR  xxx         xxx             xxx         &kp N7      &kp N8      &kp N9      xxx         &kp BSPC
+        xxx         &kp F_PLUS  &kp F_DASH  &kp F_STAR  &kp F_SLSH  &kp F_EQ        xxx         &kp N4      &kp N5      &kp N6      xxx         xxx
+        xxx         xxx         xxx         &kp F_LPAR  &kp F_RPAR  xxx             &kp F_DOT   &kp N1      &kp N2      &kp N3      &kp ENTER   xxx
+    /* ╰───────────┴───────────┴───────────╮                                                                           ╭───────────┴───────────┴───────────╯ */
+                                            xxx         &to L_DEF   &kp SPACE       &kp N0      xxx         xxx
+                                        /* ╰───────────┴───────────┴───────────╯   ╰───────────┴───────────┴───────────╯ */
+            >;
+        };
+
+        navigation_layer {
+            bindings = <
+    /* ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮   ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮ */
+        &kp ESC     xxx         xxx         xxx         xxx         xxx             xxx         xxx         xxx         xxx         xxx         &kp BSPC
+        xxx         &kp LGUI    &kp LALT    &kp LCTRL   &kp LSHFT   xxx             &kp LEFT    &kp DOWN    &kp UP      &kp RIGHT   &kp PLAY    xxx
+        xxx         xxx         xxx         xxx         xxx         xxx             &kp PREV    &kp V_DOWN  &kp V_UP    &kp NEXT    &kp MUTE    xxx
+    /* ╰───────────┴───────────┴───────────╮                                                                           ╭───────────┴───────────┴───────────╯ */
+                                            xxx         &to L_DEF   &kp SPACE       &kp ENTER   xxx         xxx
+                                        /* ╰───────────┴───────────┴───────────╯   ╰───────────┴───────────┴───────────╯ */
+            >;
+        };
+
+        function_layer {
+            bindings = <
+    /* ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮   ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮ */
+        &kp ESC     xxx         xxx         xxx         xxx         xxx             &kp F12     &kp F7      &kp F8      &kp F9      xxx         xxx
+        &kp CAPS    &kp LGUI    &kp LALT    &kp LCTRL   &kp LSHFT   xxx             &kp F11     &kp F4      &kp F5      &kp F6      xxx         xxx
+        xxx         xxx         xxx         xxx         xxx         xxx             &kp F10     &kp F1      &kp F2      &kp F3      xxx         xxx
+    /* ╰───────────┴───────────┴───────────╮                                                                           ╭───────────┴───────────┴───────────╯ */
+                                            xxx         &trans      xxx             xxx         xxx         xxx
+                                        /* ╰───────────┴───────────┴───────────╯   ╰───────────┴───────────┴───────────╯ */
+            >;
+        };
+    };
 };

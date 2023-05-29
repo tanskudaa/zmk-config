@@ -1,0 +1,6 @@
+{
+    "editor.guides.indentation": false,
+    "editor.renderWhitespace": "none",
+    "editor.rulers": [],
+    "C_Cpp.errorSquiggles": "disabled",
+}
