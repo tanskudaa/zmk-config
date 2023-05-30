@@ -99,8 +99,8 @@
             bindings = <
     /* ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮   ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮ */
         &grave      &kp F_PLUS  &kp F_DASH  &kp F_STAR  &kp F_SLSH  &kp F_EQ        &kp F_EURO  &kp F_POUN  &kp F_CURR  &kp N0      xxx         &kp BSPC
-        &kp F_AMP   &kp F_EXCL  &kp F_QUES  &kp F_LBRC  &kp F_RBRC  &kp F_AT        &kp F_HASH  &kp F_LPAR  &kp F_RPAR  &kp F_DQT   &kp F_SQT   &tilde
-        &kp F_PIPE  &kp F_SLSH  &kp F_BSLH  &kp F_LT    &kp F_GT    &kp F_DLLR      &kp F_PRCNT &kp F_LBKT  &kp F_RBKT  xxx         &caret      &to L_NUM
+        &kp F_AMP   &kp F_EXCL  &kp F_QUES  &kp F_LBRC  &kp F_RBRC  &kp F_AT        &kp F_HASH  &kp F_LPAR  &kp F_RPAR  &tilde      &kp F_DQT   &kp F_SQT
+        &kp F_PIPE  &kp F_SLSH  &kp F_BSLH  &kp F_LT    &kp F_GT    &kp F_DLLR      &kp F_PRCNT &kp F_LBKT  &kp F_RBKT  &caret      &to L_NUM   xxx
     /* ╰───────────┴───────────┴───────────╮                                                                           ╭───────────┴───────────┴───────────╯ */
                                             xxx         &to L_DEF   &kp SPACE       &kp ENTER   &to L_NAV   xxx
                                         /* ╰───────────┴───────────┴───────────╯   ╰───────────┴───────────┴───────────╯ */
@@ -111,8 +111,8 @@
             bindings = <
     /* ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮   ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮ */
         &kp ESC     &kp F_EURO  &kp F_POUN  &kp F_CURR  xxx         xxx             xxx         &kp N7      &kp N8      &kp N9      xxx         &kp BSPC
-        xxx         &kp F_PLUS  &kp F_DASH  &kp F_STAR  &kp F_SLSH  &kp F_EQ        xxx         &kp N4      &kp N5      &kp N6      xxx         xxx
-        xxx         xxx         xxx         &kp F_LPAR  &kp F_RPAR  xxx             &kp F_DOT   &kp N1      &kp N2      &kp N3      &kp ENTER   xxx
+        xxx         &kp F_PLUS  &kp F_DASH  &kp F_STAR  &kp F_SLSH  &kp F_EQ        &kp F_COM   &kp N4      &kp N5      &kp N6      &kp ENTER   xxx
+        xxx         xxx         xxx         &kp F_LPAR  &kp F_RPAR  xxx             &kp F_DOT   &kp N1      &kp N2      &kp N3      xxx         xxx
     /* ╰───────────┴───────────┴───────────╮                                                                           ╭───────────┴───────────┴───────────╯ */
                                             xxx         &to L_DEF   &kp SPACE       &kp N0      xxx         xxx
                                         /* ╰───────────┴───────────┴───────────╯   ╰───────────┴───────────┴───────────╯ */
@@ -134,8 +134,8 @@
         function_layer {
             bindings = <
     /* ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮   ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮ */
-        &kp ESC     xxx         xxx         xxx         xxx         xxx             &kp F12     &kp F7      &kp F8      &kp F9      xxx         xxx
-        &kp CAPS    &kp LGUI    &kp LALT    &kp LCTRL   &kp LSHFT   xxx             &kp F11     &kp F4      &kp F5      &kp F6      xxx         xxx
+        &kp ESC     xxx         xxx         xxx         xxx         xxx             &kp F12     &kp F7      &kp F8      &kp F9      xxx         &kp BSPC
+        &kp CAPS    &kp LGUI    &kp LALT    &kp LCTRL   &kp LSHFT   xxx             &kp F11     &kp F4      &kp F5      &kp F6      xxx         &kp F_SQT
         xxx         xxx         xxx         xxx         xxx         xxx             &kp F10     &kp F1      &kp F2      &kp F3      xxx         xxx
     /* ╰───────────┴───────────┴───────────╮                                                                           ╭───────────┴───────────┴───────────╯ */
                                             xxx         &trans      xxx             xxx         xxx         xxx
