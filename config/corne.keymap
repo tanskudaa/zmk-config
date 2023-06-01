@@ -116,7 +116,7 @@
         &kp TAB     &kp A       &kp S       &kp D       &kp F       &kp G           &kp H       &kp J       &kp K       &kp L       &kp O_UML   &kp A_UML
         &ctrl_alt_g &kp Z       &kp X       &kp C       &kp V       &kp B           &kp N       &kp M       &kp F_COM   &kp F_DOT   &kp F_DASH  &alt_ctrl_g
     /* ╰───────────┴───────────┴───────────╮                                                                           ╭───────────┴───────────┴───────────╯ */
-                                           MO_SL(L_FUN) &shft_caps  &kp SPACE       &kp ENTER   &shft_nav   MO_SL(L_SYM)
+                                            &to L_FUN   &shft_caps  &kp SPACE       &kp ENTER   &shft_nav   MO_SL(L_SYM)
                                         /* ╰───────────┴───────────┴───────────╯   ╰───────────┴───────────┴───────────╯ */
             >;
         };
