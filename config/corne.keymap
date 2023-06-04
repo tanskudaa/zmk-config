@@ -88,6 +88,13 @@
             tapping-term-ms = <TAPPING_TERM>;
             bindings = <&kp LCTRL>, <&kp LALT>, <&kp LGUI>;
         };
+        alt_ctrl_g: alt_to_ctrl_gui_dance {
+            compatible = "zmk,behavior-tap-dance";
+            label = "ALT_TO_CTRL_TO_GUI_DANCE";
+            #binding-cells = <0>;
+            tapping-term-ms = <TAPPING_TERM>;
+            bindings = <&kp LALT>, <&kp LCTRL>, <&kp LGUI>;
+        };
         lshft_caps: shift_caps_lock_dance {
             compatible = "zmk,behavior-tap-dance";
             label = "SHIFT_CAPS_LOCK_DANCE";
@@ -120,7 +127,7 @@
     /* ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮   ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮ */
         &kp ESC     &kp Q       &kp W       &kp E       &kp R       &kp T           &kp Y       &kp U       &kp I       &kp O       &kp P       &bspc_del
         &kp TAB     &kp A       &kp S       &kp D       &kp F       &kp G           &kp H       &kp J       &kp K       &kp L       &kp O_UML   &kp A_UML
-        &ctrl_alt_g &kp Z       &kp X       &kp C       &kp V       &kp B           &kp N       &kp M       &kp F_COM   &kp F_DOT   &kp F_DASH  &ctrl_alt_g
+        &ctrl_alt_g &kp Z       &kp X       &kp C       &kp V       &kp B           &kp N       &kp M       &kp F_COM   &kp F_DOT   &kp F_DASH  &alt_ctrl_g
     /* ╰───────────┴───────────┴───────────╮                                                                           ╭───────────┴───────────┴───────────╯ */
                                             &to L_FUN   &lshft_caps &kp SPACE       &kp ENTER   &rshft_nav  MO_SL(L_SYM)
                                         /* ╰───────────┴───────────┴───────────╯   ╰───────────┴───────────┴───────────╯ */
