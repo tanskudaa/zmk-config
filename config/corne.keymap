@@ -4,6 +4,19 @@
  * SPDX-License-Identifier: MIT
  */
 
+/*
+ * TODO navigation layer: w for ctrl + right, b for ctrl + left?
+    - other vim emulation bindings?
+    - u for pgup, d for pgdw
+    - forward slash for ctrl + f would be amazing but doesn't fit in fi layout
+ * TODO instead of 3-tap, lctrl + rctrl presses gui?
+ * TODO make all modifiers sticky
+ * TODO rename function layer to number layer
+ * TODO move function keys to nav layer?
+ * TODO mod-sticky number/function layer, like right hand symbol layer
+ * TODO remove remaining home row mods, replace with base layer tap-dance style
+ */
+
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
@@ -117,7 +130,7 @@
         symbol_layer {
             bindings = <
     /* ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮   ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮ */
-        &to L_DEF   &kp F_PLUS  &kp F_DASH  &kp F_STAR  &kp F_SLSH  &kp F_EQ        &kp F_EURO  &kp F_POUN  &kp F_CURR  xxx         xxx         &bspc_del
+        &to L_DEF   &kp F_PLUS  &kp F_DASH  &kp F_STAR  &kp F_SLSH  &kp F_EQ        &kp F_EURO  &kp F_POUN  &kp F_CURR  xxx         &kp N0      &bspc_del
         &kp F_AMP   &kp F_EXCL  &kp F_QUES  &kp F_LBRC  &kp F_RBRC  &kp F_AT        &kp F_HASH  &kp F_LPAR  &kp F_RPAR  &grave      &kp F_DQT   &kp F_SQT
         &kp F_PIPE  &kp F_SLSH  &kp F_BSLH  &kp F_LT    &kp F_GT    &kp F_DLLR      &kp F_PRCNT &kp F_LBKT  &kp F_RBKT  &caret      &tilde      xxx
     /* ╰───────────┴───────────┴───────────╮                                                                           ╭───────────┴───────────┴───────────╯ */
