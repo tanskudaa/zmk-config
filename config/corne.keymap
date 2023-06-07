@@ -4,12 +4,6 @@
  * SPDX-License-Identifier: MIT
  */
 
-/*
- * TODO instead of 3-tap, lctrl + rctrl presses gui?
- * TODO mod-tap caps lock instead of double tap
- * TODO idea: two-button thumb clusters: 3 + home row -> &to layers?
- */
-
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
@@ -17,9 +11,11 @@
 
 // Layer definitions
 #define L_DEF 0
-#define L_SYM 1
-#define L_NUM 2
-#define L_NAV 3
+#define L_SWI 1
+#define L_SYM 2
+#define L_NUM 3
+#define L_NAV 4
+#define L_GAM 5
 
 // Abbreviations
 #define xxx &none
@@ -30,7 +26,20 @@
 #define NEXT C_NEXT
 #define PREV C_PREVIOUS
 
+#define THUMB_CLUSTERS xxx &kp SPACE &ght LSHIFT CAPS     &to L_DEF &kp ENTER xxx
+
 // Configuration
+#define TAPPING_TERM 250
+
+&sl {
+    release-after-ms = <5000>;
+};
+
+&sk {
+    release-after-ms = <3000>;
+    quick-release;
+};
+
 /* Key indexes:
  *
  * 0  1  2  3  4  5    6  7  8  9  10 11
@@ -38,21 +47,27 @@
  * 24 25 26 27 28 29   30 31 32 33 34 35
  *          36 37 38   39 40 41
  */
-#define KEYS_LEFT 0  1  2  3  4  5 12 13 14 15 16 17 24 25 26 27 28 29 36 37 38
-#define KEYS_RIGHT 6  7  8  9  10 11 18 19 20 21 22 23 30 31 32 33 34 35 39 40 41
-#define TAPPING_TERM 250
-#define MSL(layer) &mo_sl layer layer
-
-&sl {
-    release-after-ms = <5000>;
-};
-
-&sk {
-    release-after-ms = <2000>;
-    quick-release;
-};
 
 / {
+    combos {
+        compatible = "zmk,combos";
+        combo_sym {
+            timeout-ms = <TAPPING_TERM>;
+            key-positions = <39 14>;
+            bindings = <&to L_SYM>;
+        };
+        combo_num {
+            timeout-ms = <TAPPING_TERM>;
+            key-positions = <39 15>;
+            bindings = <&to L_NUM>;
+        };
+        combo_nav {
+            timeout-ms = <TAPPING_TERM>;
+            key-positions = <39 16>;
+            bindings = <&to L_NAV>;
+        };
+    };
+
     macros {
         // Un-dead accents
         ZMK_MACRO(caret,
@@ -106,43 +121,36 @@
             label = "BACKSPACE_DELETE";
             #binding-cells = <0>;
             bindings = <&kp BACKSPACE>, <&kp DELETE>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
+            mods = <(MOD_LSFT)>;
         };
-        ctrl_alt_g: ctrl_to_alt_gui_dance {
+        esc_lgui: esc_lgui {
+            compatible = "zmk,behavior-mod-morph";
+            label = "ESC_LGUI";
+            #binding-cells = <0>;
+            bindings = <&kp ESC>, <&kp LGUI>;
+            mods = <(MOD_LSFT|MOD_LCTL|MOD_LALT)>;
+        };
+        ctrl_alt: ctrl_to_alt_dance {
             compatible = "zmk,behavior-tap-dance";
-            label = "CTRL_TO_ALT_TO_GUI_DANCE";
+            label = "CTRL_TO_ALT_DANCE";
             #binding-cells = <0>;
             tapping-term-ms = <TAPPING_TERM>;
-            bindings = <&sk LCTRL>, <&sk LALT>, <&sk LGUI>;
+            bindings = <&sk LCTRL>, <&sk LALT>;
         };
-        alt_ctrl_g: alt_to_ctrl_gui_dance {
+        alt_ctrl: alt_to_ctrl_dance {
             compatible = "zmk,behavior-tap-dance";
-            label = "ALT_TO_CTRL_TO_GUI_DANCE";
+            label = "ALT_TO_CTRL_DANCE";
             #binding-cells = <0>;
             tapping-term-ms = <TAPPING_TERM>;
-            bindings = <&sk LALT>, <&sk LCTRL>, <&sk LGUI>;
+            bindings = <&sk LALT>, <&sk LCTRL>;
         };
-        lshft_caps: shift_caps_lock_dance {
-            compatible = "zmk,behavior-tap-dance";
-            label = "SHIFT_CAPS_LOCK_DANCE";
-            #binding-cells = <0>;
-            tapping-term-ms = <TAPPING_TERM>;
-            bindings = <&kp LSHIFT>, <&kp CAPS>;
-        };
-        rshft_nav: shift_nav_layer_dance {
-            compatible = "zmk,behavior-tap-dance";
-            label = "SHIFT_NAV_LAYER_DANCE";
-            #binding-cells = <0>;
-            tapping-term-ms = <TAPPING_TERM>;
-            bindings = <&kp RSHIFT>, <&to L_NAV>;
-        };
-        mo_sl: symbol_layer_hold_tap {
+        ght: global_hold_tap {
             compatible = "zmk,behavior-hold-tap";
-            label = "SYMBOL_LAYER_HOLD_TAP";
+            label = "GLOBAL_HOLD_TAP";
             #binding-cells = <2>;
-            flavor = "tap-preferred";
+            flavor = "hold-preferred";
             tapping-term-ms = <TAPPING_TERM>;
-            bindings = <&mo>, <&sl>;
+            bindings = <&kp>, <&kp>;
         };
     };
 
@@ -152,11 +160,23 @@
         default_layer {
             bindings = <
     /* ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮   ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮ */
-        &kp ESC     &kp Q       &kp W       &kp E       &kp R       &kp T           &kp Y       &kp U       &kp I       &kp O       &kp P       &bspc_del
+        &esc_lgui   &kp Q       &kp W       &kp E       &kp R       &kp T           &kp Y       &kp U       &kp I       &kp O       &kp P       &bspc_del
         &kp TAB     &kp A       &kp S       &kp D       &kp F       &kp G           &kp H       &kp J       &kp K       &kp L       &kp O_UML   &kp A_UML
-        &ctrl_alt_g &kp Z       &kp X       &kp C       &kp V       &kp B           &kp N       &kp M       &kp F_COM   &kp F_DOT   &kp F_DASH  &alt_ctrl_g
+        &ctrl_alt   &kp Z       &kp X       &kp C       &kp V       &kp B           &kp N       &kp M       &kp F_COM   &kp F_DOT   &kp F_DASH  &alt_ctrl
     /* ╰───────────┴───────────┴───────────╮                                                                           ╭───────────┴───────────┴───────────╯ */
-                                            MSL(L_NUM)  &lshft_caps &kp SPACE       &kp ENTER   &rshft_nav  MSL(L_SYM)
+                                                                          THUMB_CLUSTERS
+                                        /* ╰───────────┴───────────┴───────────╯   ╰───────────┴───────────┴───────────╯ */
+            >;
+        };
+
+        switch_layer {
+            bindings = <
+    /* ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮   ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮ */
+        xxx         xxx         xxx         xxx         xxx         xxx             xxx         xxx         xxx         xxx         xxx         xxx
+        xxx         xxx         &to L_SYM   &to L_NUM   &to L_NAV   xxx             xxx         xxx         xxx         xxx         xxx         xxx
+        xxx         xxx         xxx         xxx         xxx         xxx             xxx         xxx         xxx         xxx         xxx         xxx
+    /* ╰───────────┴───────────┴───────────╮                                                                           ╭───────────┴───────────┴───────────╯ */
+                                                                          THUMB_CLUSTERS
                                         /* ╰───────────┴───────────┴───────────╯   ╰───────────┴───────────┴───────────╯ */
             >;
         };
@@ -164,11 +184,11 @@
         symbol_layer {
             bindings = <
     /* ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮   ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮ */
-        &to L_DEF   &kp F_PLUS  &kp F_DASH  &kp F_STAR  &kp F_SLSH  &kp F_EQ        &kp F_EURO  &kp F_POUN  &kp F_CURR  xxx         &kp N0      &bspc_del
-        &kp F_AMP   &kp F_EXCL  &kp F_QUES  &kp F_LBRC  &kp F_RBRC  &kp F_AT        &kp F_HASH  &kp F_LPAR  &kp F_RPAR  &grave      &kp F_DQT   &kp F_SQT
-        &kp F_PIPE  &kp F_SLSH  &kp F_BSLH  &kp F_LT    &kp F_GT    &kp F_DLLR      &kp F_PRCNT &kp F_LBKT  &kp F_RBKT  &caret      &tilde      xxx
+        &esc_lgui   &kp F_PLUS  &kp F_DASH  &kp F_STAR  &kp F_SLSH  &kp F_EQ        &kp F_EURO  &kp F_POUN  &kp F_CURR  &caret      &grave      &bspc_del
+        xxx         &kp F_EXCL  &kp F_QUES  &kp F_LBRC  &kp F_RBRC  &kp F_AT        &kp F_HASH  &kp F_LPAR  &kp F_RPAR  &kp F_AMP   &kp F_DQT   &kp F_SQT
+        &ctrl_alt   &kp F_SLSH  &kp F_BSLH  &kp F_LT    &kp F_GT    &kp F_DLLR      &kp F_PRCNT &kp F_LBKT  &kp F_RBKT  &kp F_PIPE  &tilde      &alt_ctrl
     /* ╰───────────┴───────────┴───────────╮                                                                           ╭───────────┴───────────┴───────────╯ */
-                                            MSL(L_NUM)  &lshft_caps &kp SPACE       &kp ENTER   &rshft_nav  MSL(L_SYM)
+                                                                          THUMB_CLUSTERS
                                         /* ╰───────────┴───────────┴───────────╯   ╰───────────┴───────────┴───────────╯ */
             >;
         };
@@ -176,11 +196,11 @@
         number_layer {
             bindings = <
     /* ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮   ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮ */
-        &to L_DEF   &kp F_PLUS  &kp F_DASH  &kp F_STAR  &kp F_SLSH  &kp F_EQ        &kp F12     &kp F7      &kp F8      &kp F9      &kp N0      &bspc_del
-        xxx         &kp N1      &kp N2      &kp N3      &kp N4      &kp N5          &kp F11     &kp F4      &kp F5      &kp F6      &kp F_DQT   &kp F_SQT
-        &ctrl_alt_g &kp N6      &kp N7      &kp N8      &kp N9      &kp N0          &kp F10     &kp F1      &kp F2      &kp F3      &tilde      &alt_ctrl_g
+        &esc_lgui   &kp F_PLUS  &kp F_DASH  &kp F_STAR  &kp F_SLSH  &kp F_EQ        &kp F12     &kp F7      &kp F8      &kp F9      xxx         &bspc_del
+        xxx         &kp N1      &kp N2      &kp N3      &kp N4      &kp N5          &kp F11     &kp F4      &kp F5      &kp F6      xxx         xxx
+        &ctrl_alt   &kp N6      &kp N7      &kp N8      &kp N9      &kp N0          &kp F10     &kp F1      &kp F2      &kp F3      xxx         &alt_ctrl
     /* ╰───────────┴───────────┴───────────╮                                                                           ╭───────────┴───────────┴───────────╯ */
-                                            MSL(L_NUM)  &lshft_caps &kp SPACE       &kp ENTER   &rshft_nav  MSL(L_SYM)
+                                                                          THUMB_CLUSTERS
                                         /* ╰───────────┴───────────┴───────────╯   ╰───────────┴───────────┴───────────╯ */
             >;
         };
@@ -188,11 +208,23 @@
         navigation_layer {
             bindings = <
     /* ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮   ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮ */
-        &to L_DEF   xxx         &word       xxx         xxx         xxx             xxx         &kp PG_UP   xxx         xxx         xxx         &bspc_del
-        xxx         xxx         xxx         &kp PG_DN   &find       xxx             &kp LEFT    &kp DOWN    &kp UP      &kp RIGHT   &kp PLAY    xxx
-        &ctrl_alt_g xxx         xxx         xxx         xxx         &back           &kp PREV    &kp V_DOWN  &kp V_UP    &kp NEXT    &kp MUTE    &alt_ctrl_g
+        &esc_lgui   xxx         &word       xxx         xxx         xxx             xxx         &kp PG_UP   xxx         xxx         xxx         &bspc_del
+        &kp MUTE    xxx         xxx         &kp PG_DN   &find       xxx             &kp LEFT    &kp DOWN    &kp UP      &kp RIGHT   xxx         &kp PLAY
+        &ctrl_alt   xxx         xxx         xxx         xxx         &back           &kp PREV    &kp V_DOWN  &kp V_UP    &kp NEXT    xxx         &alt_ctrl
     /* ╰───────────┴───────────┴───────────╮                                                                           ╭───────────┴───────────┴───────────╯ */
-                                            MSL(L_NUM)  &lshft_caps &kp SPACE       &kp ENTER   &rshft_nav  MSL(L_SYM)
+                                                                          THUMB_CLUSTERS
+                                        /* ╰───────────┴───────────┴───────────╯   ╰───────────┴───────────┴───────────╯ */
+            >;
+        };
+        
+        gaming_layer {
+            bindings = <
+    /* ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮   ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮ */
+        &kp N1      &kp TAB     &kp Q       &kp W       &kp E       &kp R           xxx         xxx         xxx         xxx         xxx         xxx
+        &kp N2      &kp LSHIFT  &kp A       &kp S       &kp D       &kp F           xxx         xxx         xxx         xxx         xxx         xxx
+        &kp N3      &kp LCTRL   &kp Z       &kp X       &kp C       &kp V           xxx         xxx         xxx         xxx         xxx         xxx
+    /* ╰───────────┴───────────┴───────────╮                                                                           ╭───────────┴───────────┴───────────╯ */
+                                            xxx         &kp SPACE   &kp ESC         xxx         xxx         xxx
                                         /* ╰───────────┴───────────┴───────────╯   ╰───────────┴───────────┴───────────╯ */
             >;
         };
