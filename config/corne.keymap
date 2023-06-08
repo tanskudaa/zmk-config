@@ -26,7 +26,7 @@
 #define NEXT C_NEXT
 #define PREV C_PREVIOUS
 
-#define THUMB_CLUSTERS xxx &kp SPACE &ght LSHIFT CAPS     &to L_DEF &kp ENTER xxx
+#define THUMB_CLUSTERS xxx &ght LSHIFT CAPS &kp SPACE     &kp ENTER &to L_DEF xxx
 
 // Configuration
 #define TAPPING_TERM 250
@@ -53,17 +53,17 @@
         compatible = "zmk,combos";
         combo_sym {
             timeout-ms = <TAPPING_TERM>;
-            key-positions = <39 14>;
+            key-positions = <40 14>;
             bindings = <&to L_SYM>;
         };
         combo_num {
             timeout-ms = <TAPPING_TERM>;
-            key-positions = <39 15>;
+            key-positions = <40 15>;
             bindings = <&to L_NUM>;
         };
         combo_nav {
             timeout-ms = <TAPPING_TERM>;
-            key-positions = <39 16>;
+            key-positions = <40 16>;
             bindings = <&to L_NAV>;
         };
     };
