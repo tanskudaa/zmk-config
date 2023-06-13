@@ -11,9 +11,9 @@
 
 // Layer definitions
 #define L_DEF 0
-#define L_SYM 1
-#define L_NUM 2
-#define L_NAV 3
+#define L_NUM 1
+#define L_NAV 2
+#define L_SYM 3
 #define L_GAM 4
 
 // Abbreviations
@@ -35,7 +35,7 @@
 };
 
 &sk {
-    release-after-ms = <3000>;
+    release-after-ms = <1000>;
     quick-release;
 };
 
@@ -53,20 +53,20 @@
         combo_sym {
             timeout-ms = <TAPPING_TERM>;
             key-positions = <40 14>;
-            bindings = <&to L_SYM>;
-            layers = <L_DEF L_SYM L_NUM L_NAV>;
+            bindings = <&sl L_SYM>;
+            layers = <L_DEF L_NUM L_NAV L_SYM>;
         };
         combo_num {
             timeout-ms = <TAPPING_TERM>;
             key-positions = <40 15>;
             bindings = <&to L_NUM>;
-            layers = <L_DEF L_SYM L_NUM L_NAV>;
+            layers = <L_DEF L_NUM L_NAV L_SYM>;
         };
         combo_nav {
             timeout-ms = <TAPPING_TERM>;
             key-positions = <40 16>;
             bindings = <&to L_NAV>;
-            layers = <L_DEF L_SYM L_NUM L_NAV>;
+            layers = <L_DEF L_NUM L_NAV L_SYM>;
         };
     };
 
@@ -131,6 +131,7 @@
             #binding-cells = <0>;
             bindings = <&kp ESC>, <&kp LGUI>;
             mods = <(MOD_LSFT|MOD_LCTL|MOD_LALT)>;
+            keep-mods = <(MOD_LSFT)>;
         };
         ctrl_alt: ctrl_to_alt_dance {
             compatible = "zmk,behavior-tap-dance";
@@ -178,23 +179,11 @@
             >;
         };
 
-        symbol_layer {
-            bindings = <
-    /* ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮   ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮ */
-        &esc_lgui   &kp F_PLUS  &kp F_DASH  &kp F_STAR  &kp F_SLSH  &kp F_EQ        &kp F_EURO  &kp F_POUN  &kp F_CURR  &caret      &grave      &bspc_del
-        xxx         &kp F_EXCL  &kp F_QUES  &kp F_LBRC  &kp F_RBRC  &kp F_AT        &kp F_HASH  &kp F_LPAR  &kp F_RPAR  &kp F_AMP   &kp F_DQT   &kp F_SQT
-        &ctrl_alt   &kp F_SLSH  &kp F_BSLH  &kp F_LT    &kp F_GT    &kp F_DLLR      &kp F_PRCNT &kp F_LBKT  &kp F_RBKT  &kp F_PIPE  &tilde      &alt_ctrl
-    /* ╰───────────┴───────────┴───────────╮                                                                           ╭───────────┴───────────┴───────────╯ */
-                                                                          THUMB_CLUSTERS
-                                        /* ╰───────────┴───────────┴───────────╯   ╰───────────┴───────────┴───────────╯ */
-            >;
-        };
-
         number_layer {
             bindings = <
     /* ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮   ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮ */
         &esc_lgui   &kp F_PLUS  &kp F_DASH  &kp F_STAR  &kp F_SLSH  &kp F_EQ        &kp F12     &kp F7      &kp F8      &kp F9      xxx         &bspc_del
-        xxx         &kp N1      &kp N2      &kp N3      &kp N4      &kp N5          &kp F11     &kp F4      &kp F5      &kp F6      xxx         xxx
+        &kp F_DOT   &kp N1      &kp N2      &kp N3      &kp N4      &kp N5          &kp F11     &kp F4      &kp F5      &kp F6      xxx         xxx
         &ctrl_alt   &kp N6      &kp N7      &kp N8      &kp N9      &kp N0          &kp F10     &kp F1      &kp F2      &kp F3      xxx         &alt_ctrl
     /* ╰───────────┴───────────┴───────────╮                                                                           ╭───────────┴───────────┴───────────╯ */
                                                                           THUMB_CLUSTERS
@@ -208,6 +197,18 @@
         &esc_lgui   xxx         &word       xxx         xxx         xxx             xxx         &kp PG_UP   xxx         xxx         xxx         &bspc_del
         &kp MUTE    xxx         xxx         &kp PG_DN   &find       xxx             &kp LEFT    &kp DOWN    &kp UP      &kp RIGHT   xxx         &kp PLAY
         &ctrl_alt   xxx         xxx         xxx         xxx         &back           &kp PREV    &kp V_DOWN  &kp V_UP    &kp NEXT    xxx         &alt_ctrl
+    /* ╰───────────┴───────────┴───────────╮                                                                           ╭───────────┴───────────┴───────────╯ */
+                                                                          THUMB_CLUSTERS
+                                        /* ╰───────────┴───────────┴───────────╯   ╰───────────┴───────────┴───────────╯ */
+            >;
+        };
+
+        symbol_layer {
+            bindings = <
+    /* ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮   ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮ */
+        &esc_lgui   &kp F_PLUS  &kp F_DASH  &kp F_STAR  &kp F_SLSH  &kp F_EQ        &kp F_EURO  &kp F_POUN  &kp F_CURR  &caret      &grave      &bspc_del
+        xxx         &kp F_EXCL  &kp F_QUES  &kp F_LBRC  &kp F_RBRC  &kp F_AT        &kp F_HASH  &kp F_LPAR  &kp F_RPAR  &kp F_AMP   &kp F_DQT   &kp F_SQT
+        &ctrl_alt   &kp F_SLSH  &kp F_BSLH  &kp F_LT    &kp F_GT    &kp F_DLLR      &kp F_PRCNT &kp F_LBKT  &kp F_RBKT  &kp F_PIPE  &tilde      &alt_ctrl
     /* ╰───────────┴───────────┴───────────╮                                                                           ╭───────────┴───────────┴───────────╯ */
                                                                           THUMB_CLUSTERS
                                         /* ╰───────────┴───────────┴───────────╯   ╰───────────┴───────────┴───────────╯ */
