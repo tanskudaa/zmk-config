@@ -14,7 +14,8 @@
 #define L_NUM 1
 #define L_NAV 2
 #define L_SYM 3
-#define L_GAM 4
+#define L_GAME 4
+#define L_GRAI 5
 
 // Abbreviations
 #define xxx &none
@@ -25,7 +26,7 @@
 #define NEXT C_NEXT
 #define PREV C_PREVIOUS
 
-#define THUMB_CLUSTERS &game_dance &ght LSHIFT CAPS &kp SPACE     &kp ENTER &to L_DEF xxx
+#define THUMB_CLUSTERS &game_dance &shift_caps &kp SPACE     &kp ENTER &to L_DEF xxx
 
 // Configuration
 #define TAPPING_TERM 250
@@ -147,20 +148,19 @@
             tapping-term-ms = <TAPPING_TERM>;
             bindings = <&sk LALT>, <&sk LCTRL>;
         };
+        shift_caps: shift_caps_dance {
+            compatible = "zmk,behavior-tap-dance";
+            label = "SHIFT_CAPS_DANCE";
+            #binding-cells = <0>;
+            tapping-term-ms = <TAPPING_TERM>;
+            bindings = <&kp LSHIFT>, <&kp CAPS>;
+        };
         game_dance: tog_gaming_dance {
             compatible = "zmk,behavior-tap-dance";
             label = "TOG_GAMING_DANCE";
             #binding-cells = <0>;
             tapping-term-ms = <TAPPING_TERM>;
-            bindings = <&none>, <&none>, <&none>, <&none>, <&tog L_GAM>;
-        };
-        ght: global_hold_tap {
-            compatible = "zmk,behavior-hold-tap";
-            label = "GLOBAL_HOLD_TAP";
-            #binding-cells = <2>;
-            flavor = "hold-preferred";
-            tapping-term-ms = <TAPPING_TERM>;
-            bindings = <&kp>, <&kp>;
+            bindings = <&none>, <&none>, <&none>, <&none>, <&tog L_GAME>;
         };
     };
 
@@ -218,11 +218,23 @@
         gaming_layer {
             bindings = <
     /* ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮   ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮ */
-        &kp N1      &kp TAB     &kp Q       &kp W       &kp E       &kp R           xxx         xxx         xxx         xxx         xxx         xxx
-        &kp N2      &kp LSHIFT  &kp A       &kp S       &kp D       &kp F           xxx         xxx         xxx         xxx         xxx         xxx
-        &kp N3      &kp LCTRL   &kp Z       &kp X       &kp C       &kp V           xxx         xxx         xxx         xxx         xxx         xxx
+        &kp ESC     &kp G       &kp Q       &kp W       &kp E       &kp R           xxx         xxx         xxx         xxx         xxx         xxx
+        &kp TAB     &kp LSHIFT  &kp A       &kp S       &kp D       &kp F           xxx         xxx         xxx         xxx         xxx         xxx
+        &kp T       &kp LCTRL   &kp Z       &kp X       &kp C       &kp V           xxx         xxx         xxx         xxx         xxx         xxx
     /* ╰───────────┴───────────┴───────────╮                                                                           ╭───────────┴───────────┴───────────╯ */
-                                            &game_dance &kp ESC     &kp SPACE       xxx         xxx         xxx
+                                            &game_dance &mo L_GRAI  &kp SPACE       xxx         xxx         xxx
+                                        /* ╰───────────┴───────────┴───────────╯   ╰───────────┴───────────┴───────────╯ */
+            >;
+        };
+
+        gaming_raised_layer {
+            bindings = <
+    /* ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮   ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮ */
+        xxx         &kp F1      &kp F2      &kp F3      &kp F4      &kp F5          xxx         xxx         xxx         xxx         xxx         xxx
+        xxx         &kp N1      &kp N2      &kp N3      &kp N4      &kp N5          xxx         xxx         xxx         xxx         xxx         xxx
+        xxx         &kp N6      &kp N7      &kp N8      &kp N9      &kp N0          xxx         xxx         xxx         xxx         xxx         xxx
+    /* ╰───────────┴───────────┴───────────╮                                                                           ╭───────────┴───────────┴───────────╯ */
+                                            xxx         &trans      xxx             xxx         xxx         xxx
                                         /* ╰───────────┴───────────┴───────────╯   ╰───────────┴───────────┴───────────╯ */
             >;
         };
