@@ -16,6 +16,7 @@
 #define L_SYM 3
 #define L_GAME 4
 #define L_GRAI 5
+#define L_BLU 6
 
 // Abbreviations
 #define xxx &none
@@ -26,7 +27,7 @@
 #define NEXT C_NEXT
 #define PREV C_PREVIOUS
 
-#define THUMB_CLUSTERS &game_dance &shift_caps &kp SPACE     &kp ENTER &to L_DEF xxx
+#define THUMB_CLUSTERS &game_dance &shift_caps &kp SPACE     &kp ENTER &to L_DEF &mo L_BLU
 
 // Configuration
 #define TAPPING_TERM 250
@@ -235,6 +236,18 @@
         xxx         &kp N6      &kp N7      &kp N8      &kp N9      &kp N0          xxx         xxx         xxx         xxx         xxx         xxx
     /* ╰───────────┴───────────┴───────────╮                                                                           ╭───────────┴───────────┴───────────╯ */
                                             xxx         &trans      xxx             xxx         xxx         xxx
+                                        /* ╰───────────┴───────────┴───────────╯   ╰───────────┴───────────┴───────────╯ */
+            >;
+        };
+
+        bluetooth_layer {
+            bindings = <
+    /* ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮   ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮ */
+        xxx         xxx         xxx         xxx         xxx         xxx             xxx         xxx         xxx         xxx         xxx         xxx
+        xxx       &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_CLR xxx             xxx         xxx         xxx         xxx         xxx         xxx
+        xxx         xxx         xxx         xxx         xxx         xxx             xxx         xxx         xxx         xxx         xxx         xxx
+    /* ╰───────────┴───────────┴───────────╮                                                                           ╭───────────┴───────────┴───────────╯ */
+                                            xxx         xxx         xxx             xxx         xxx         &trans
                                         /* ╰───────────┴───────────┴───────────╯   ╰───────────┴───────────┴───────────╯ */
             >;
         };
