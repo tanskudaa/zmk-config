@@ -129,6 +129,33 @@
                 , <&macro_release &kp LCTRL>
                 ;
         )
+        ZMK_MACRO(cut,
+            wait-ms = <10>;
+            tap-ms = <10>;
+            bindings
+                = <&macro_press &kp LCTRL>
+                , <&macro_tap &kp X>
+                , <&macro_release &kp LCTRL>
+                ;
+        )
+        ZMK_MACRO(copy,
+            wait-ms = <10>;
+            tap-ms = <10>;
+            bindings
+                = <&macro_press &kp LCTRL>
+                , <&macro_tap &kp C>
+                , <&macro_release &kp LCTRL>
+                ;
+        )
+        ZMK_MACRO(paste,
+            wait-ms = <10>;
+            tap-ms = <10>;
+            bindings
+                = <&macro_press &kp LCTRL>
+                , <&macro_tap &kp V>
+                , <&macro_release &kp LCTRL>
+                ;
+        )
     };
 
     behaviors {
@@ -200,9 +227,9 @@
         navigation_layer {
             bindings = <
     /* ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮   ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮ */
-        &esc_lgui   xxx         &word       xxx         xxx         xxx             xxx         &kp PG_UP   xxx         xxx         xxx         &bspc_del
+        &esc_lgui   xxx         &word       xxx         xxx         xxx             &copy       &kp PG_UP   xxx         xxx         &paste      &bspc_del
         &kp TAB     xxx         xxx         &kp PG_DN   &find       xxx             &kp LEFT    &kp DOWN    &kp UP      &kp RIGHT   &kp MUTE    &kp PLAY
-        &ctrl_alt   xxx         xxx         xxx         xxx         &back           &kp PREV    &kp V_DOWN  &kp V_UP    &kp NEXT    xxx         &alt_ctrl
+        &ctrl_alt   xxx         &cut        xxx         xxx         &back           &kp PREV    &kp V_DOWN  &kp V_UP    &kp NEXT    xxx         &alt_ctrl
     /* ╰───────────┴───────────┴───────────╮                                                                           ╭───────────┴───────────┴───────────╯ */
                                                                            THUMB_CLUSTERS
                                         /* ╰───────────┴───────────┴───────────╯   ╰───────────┴───────────┴───────────╯ */
