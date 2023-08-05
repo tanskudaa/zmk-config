@@ -27,7 +27,8 @@
 #define NEXT C_NEXT
 #define PREV C_PREVIOUS
 
-#define THUMB_CLUSTERS &game_dance &shift_caps &kp SPACE     &kp ENTER &to L_DEF &mo L_BLU
+#define THUMB_CLUSTERS         &game_dance &kp LSHIFT &kp SPACE     &kp ENTER &to L_DEF &mo L_BLU
+#define THUMB_CLUSTERS_DEFAULT &game_dance &kp LSHIFT &kp SPACE     &kp ENTER &mo L_SYM &mo L_BLU
 
 // Configuration
 #define TAPPING_TERM 250
@@ -51,6 +52,7 @@
 
 / {
     combos {
+        // Layer switches
         compatible = "zmk,combos";
         combo_sym {
             timeout-ms = <TAPPING_TERM>;
@@ -68,6 +70,13 @@
             timeout-ms = <TAPPING_TERM>;
             key-positions = <40 16>;
             bindings = <&to L_NAV>;
+            layers = <L_DEF L_NUM L_NAV L_SYM>;
+        };
+        // Caps lock
+        combo_capsl {
+            timeout-ms = <TAPPING_TERM>;
+            key-positions = <40 37>;
+            bindings = <&kp CAPS>;
             layers = <L_DEF L_NUM L_NAV L_SYM>;
         };
     };
@@ -95,7 +104,9 @@
             tap-ms = <10>;
             bindings
                 = <&macro_press &kp LCTRL>
-                , <&macro_tap &kp RIGHT>
+                , <&macro_press &kp RIGHT>
+                , <&macro_pause_for_release>
+                , <&macro_release &kp RIGHT>
                 , <&macro_release &kp LCTRL>
                 ;
         )
@@ -104,7 +115,9 @@
             tap-ms = <10>;
             bindings
                 = <&macro_press &kp LCTRL>
-                , <&macro_tap &kp LEFT>
+                , <&macro_press &kp LEFT>
+                , <&macro_pause_for_release>
+                , <&macro_release &kp LEFT>
                 , <&macro_release &kp LCTRL>
                 ;
         )
@@ -149,13 +162,6 @@
             tapping-term-ms = <TAPPING_TERM>;
             bindings = <&sk LALT>, <&sk LCTRL>;
         };
-        shift_caps: shift_caps_dance {
-            compatible = "zmk,behavior-tap-dance";
-            label = "SHIFT_CAPS_DANCE";
-            #binding-cells = <0>;
-            tapping-term-ms = <TAPPING_TERM>;
-            bindings = <&kp LSHIFT>, <&kp CAPS>;
-        };
         game_dance: tog_gaming_dance {
             compatible = "zmk,behavior-tap-dance";
             label = "TOG_GAMING_DANCE";
@@ -175,7 +181,7 @@
         &kp TAB     &kp A       &kp S       &kp D       &kp F       &kp G           &kp H       &kp J       &kp K       &kp L       &kp O_UML   &kp A_UML
         &ctrl_alt   &kp Z       &kp X       &kp C       &kp V       &kp B           &kp N       &kp M       &kp F_COM   &kp F_DOT   &kp F_DASH  &alt_ctrl
     /* ╰───────────┴───────────┴───────────╮                                                                           ╭───────────┴───────────┴───────────╯ */
-                                                                          THUMB_CLUSTERS
+                                                                       THUMB_CLUSTERS_DEFAULT
                                         /* ╰───────────┴───────────┴───────────╯   ╰───────────┴───────────┴───────────╯ */
             >;
         };
@@ -184,7 +190,7 @@
             bindings = <
     /* ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮   ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮ */
         &esc_lgui   &kp F_PLUS  &kp F_DASH  &kp F_STAR  &kp F_SLSH  &kp F_EQ        &kp F12     &kp F7      &kp F8      &kp F9      xxx         &bspc_del
-        &kp F_DOT   &kp N1      &kp N2      &kp N3      &kp N4      &kp N5          &kp F11     &kp F4      &kp F5      &kp F6      xxx         xxx
+        &kp TAB     &kp N1      &kp N2      &kp N3      &kp N4      &kp N5          &kp F11     &kp F4      &kp F5      &kp F6      &kp F_DOT   &kp F_COM
         &ctrl_alt   &kp N6      &kp N7      &kp N8      &kp N9      &kp N0          &kp F10     &kp F1      &kp F2      &kp F3      xxx         &alt_ctrl
     /* ╰───────────┴───────────┴───────────╮                                                                           ╭───────────┴───────────┴───────────╯ */
                                                                           THUMB_CLUSTERS
@@ -196,7 +202,7 @@
             bindings = <
     /* ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮   ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮ */
         &esc_lgui   xxx         &word       xxx         xxx         xxx             xxx         &kp PG_UP   xxx         xxx         xxx         &bspc_del
-        &kp MUTE    xxx         xxx         &kp PG_DN   &find       xxx             &kp LEFT    &kp DOWN    &kp UP      &kp RIGHT   xxx         &kp PLAY
+        &kp TAB     xxx         xxx         &kp PG_DN   &find       xxx             &kp LEFT    &kp DOWN    &kp UP      &kp RIGHT   &kp MUTE    &kp PLAY
         &ctrl_alt   xxx         xxx         xxx         xxx         &back           &kp PREV    &kp V_DOWN  &kp V_UP    &kp NEXT    xxx         &alt_ctrl
     /* ╰───────────┴───────────┴───────────╮                                                                           ╭───────────┴───────────┴───────────╯ */
                                                                           THUMB_CLUSTERS
@@ -243,8 +249,8 @@
         bluetooth_layer {
             bindings = <
     /* ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮   ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮ */
-        xxx         xxx         xxx         xxx         xxx         xxx             xxx         xxx         xxx         xxx         xxx         xxx
-        xxx       &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_CLR xxx             xxx         xxx         xxx         xxx         xxx         xxx
+        xxx         xxx         xxx         xxx         xxx         xxx             xxx         xxx         xxx         xxx         xxx         &bt BT_CLR
+        xxx       &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 xxx           xxx         xxx         xxx         xxx         xxx         xxx
         xxx         xxx         xxx         xxx         xxx         xxx             xxx         xxx         xxx         xxx         xxx         xxx
     /* ╰───────────┴───────────┴───────────╮                                                                           ╭───────────┴───────────┴───────────╯ */
                                             xxx         xxx         xxx             xxx         xxx         &trans
