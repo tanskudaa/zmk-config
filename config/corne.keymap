@@ -27,8 +27,7 @@
 #define NEXT C_NEXT
 #define PREV C_PREVIOUS
 
-#define THUMB_CLUSTERS         &game_dance &kp LSHIFT &kp SPACE     &kp ENTER &to L_DEF &mo L_BLU
-#define THUMB_CLUSTERS_DEFAULT &game_dance &kp LSHIFT &kp SPACE     &kp ENTER &mo L_SYM &mo L_BLU
+#define THUMB_CLUSTERS &game_dance &kp LSHIFT &kp SPACE     &kp ENTER &mo L_SYM &mo L_BLU
 
 // Configuration
 #define TAPPING_TERM 250
@@ -54,21 +53,21 @@
     combos {
         // Layer switches
         compatible = "zmk,combos";
-        combo_sym {
+        combo_def {
             timeout-ms = <TAPPING_TERM>;
-            key-positions = <40 14>;
-            bindings = <&sl L_SYM>;
+            key-positions = <40 0>;
+            bindings = <&to L_DEF>;
             layers = <L_DEF L_NUM L_NAV L_SYM>;
         };
         combo_num {
             timeout-ms = <TAPPING_TERM>;
-            key-positions = <40 15>;
+            key-positions = <40 12>;
             bindings = <&to L_NUM>;
             layers = <L_DEF L_NUM L_NAV L_SYM>;
         };
         combo_nav {
             timeout-ms = <TAPPING_TERM>;
-            key-positions = <40 16>;
+            key-positions = <40 24>;
             bindings = <&to L_NAV>;
             layers = <L_DEF L_NUM L_NAV L_SYM>;
         };
@@ -181,7 +180,7 @@
         &kp TAB     &kp A       &kp S       &kp D       &kp F       &kp G           &kp H       &kp J       &kp K       &kp L       &kp O_UML   &kp A_UML
         &ctrl_alt   &kp Z       &kp X       &kp C       &kp V       &kp B           &kp N       &kp M       &kp F_COM   &kp F_DOT   &kp F_DASH  &alt_ctrl
     /* ╰───────────┴───────────┴───────────╮                                                                           ╭───────────┴───────────┴───────────╯ */
-                                                                       THUMB_CLUSTERS_DEFAULT
+                                                                           THUMB_CLUSTERS
                                         /* ╰───────────┴───────────┴───────────╯   ╰───────────┴───────────┴───────────╯ */
             >;
         };
@@ -193,7 +192,7 @@
         &kp TAB     &kp N1      &kp N2      &kp N3      &kp N4      &kp N5          &kp F11     &kp F4      &kp F5      &kp F6      &kp F_DOT   &kp F_COM
         &ctrl_alt   &kp N6      &kp N7      &kp N8      &kp N9      &kp N0          &kp F10     &kp F1      &kp F2      &kp F3      xxx         &alt_ctrl
     /* ╰───────────┴───────────┴───────────╮                                                                           ╭───────────┴───────────┴───────────╯ */
-                                                                          THUMB_CLUSTERS
+                                                                           THUMB_CLUSTERS
                                         /* ╰───────────┴───────────┴───────────╯   ╰───────────┴───────────┴───────────╯ */
             >;
         };
@@ -205,7 +204,7 @@
         &kp TAB     xxx         xxx         &kp PG_DN   &find       xxx             &kp LEFT    &kp DOWN    &kp UP      &kp RIGHT   &kp MUTE    &kp PLAY
         &ctrl_alt   xxx         xxx         xxx         xxx         &back           &kp PREV    &kp V_DOWN  &kp V_UP    &kp NEXT    xxx         &alt_ctrl
     /* ╰───────────┴───────────┴───────────╮                                                                           ╭───────────┴───────────┴───────────╯ */
-                                                                          THUMB_CLUSTERS
+                                                                           THUMB_CLUSTERS
                                         /* ╰───────────┴───────────┴───────────╯   ╰───────────┴───────────┴───────────╯ */
             >;
         };
@@ -214,10 +213,10 @@
             bindings = <
     /* ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮   ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮ */
         &esc_lgui   &kp F_PLUS  &kp F_DASH  &kp F_STAR  &kp F_SLSH  &kp F_EQ        &kp F_EURO  &kp F_POUN  &kp F_CURR  &caret      &grave      &bspc_del
-        xxx         &kp F_EXCL  &kp F_QUES  &kp F_LBRC  &kp F_RBRC  &kp F_AT        &kp F_HASH  &kp F_LPAR  &kp F_RPAR  &kp F_AMP   &kp F_DQT   &kp F_SQT
+        &kp TAB     &kp F_EXCL  &kp F_QUES  &kp F_LBRC  &kp F_RBRC  &kp F_AT        &kp F_HASH  &kp F_LPAR  &kp F_RPAR  &kp F_AMP   &kp F_DQT   &kp F_SQT
         &ctrl_alt   &kp F_SLSH  &kp F_BSLH  &kp F_LT    &kp F_GT    &kp F_DLLR      &kp F_PRCNT &kp F_LBKT  &kp F_RBKT  &kp F_PIPE  &tilde      &alt_ctrl
     /* ╰───────────┴───────────┴───────────╮                                                                           ╭───────────┴───────────┴───────────╯ */
-                                                                          THUMB_CLUSTERS
+                                                                           THUMB_CLUSTERS
                                         /* ╰───────────┴───────────┴───────────╯   ╰───────────┴───────────┴───────────╯ */
             >;
         };
