@@ -24,6 +24,9 @@
 #define LEFT_HAND_KEYS  <0  1  2  3  4  5  12 13 14 15 16 17 24 25 26 27 28 29 36 37 38>
 #define RIGHT_HAND_KEYS <6  7  8  9  10 11 18 19 20 21 22 23 30 31 32 33 34 35 39 40 41>
 
+// Configuration
+
+
 / {
     behaviors {
         lh: left_hand_home_row_mods {
@@ -31,8 +34,8 @@
             label = "LEFT_POSITIONAL_HOLD_TAP";
             #binding-cells = <2>;
             flavor = "tap-preferred";
-            tapping-term-ms = <300>;                        // Produces hold after ms
-            quick-tap-ms = <200>;                           // Produces and holds tap key if pressed again in ms
+            tapping-term-ms = <200>;                        // Produces hold after ms
+            quick-tap-ms = <150>;                           // Produces and holds tap key if pressed again in ms
             require-prior-idle-ms = <200>;                  // Disables hold presses until no key is pressed for ms
             bindings = <&kp>, <&kp>;
             hold-trigger-key-positions = RIGHT_HAND_KEYS;   // Right hand only
@@ -42,11 +45,21 @@
             label = "RIGHT_POSITIONAL_HOLD_TAP";
             #binding-cells = <2>;
             flavor = "tap-preferred";
-            tapping-term-ms = <300>;                        // Produces hold after ms
-            quick-tap-ms = <200>;                           // Produces and holds tap key if pressed again in ms
+            tapping-term-ms = <200>;                        // Produces hold after ms
+            quick-tap-ms = <150>;                           // Produces and holds tap key if pressed again in ms
             require-prior-idle-ms = <200>;                  // Disables hold presses until no key is pressed for ms
             bindings = <&kp>, <&kp>;
             hold-trigger-key-positions = LEFT_HAND_KEYS;    // Left hand only
+        };
+        ltc: layer-tap-configured {
+            compatible = "zmk,behavior-hold-tap";
+            label = "LAYER_TAP_CONFIGURED";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <200>;                        // Produces hold after ms
+            quick-tap-ms = <150>;                           // Produces and holds tap key if pressed again in ms
+            require-prior-idle-ms = <200>;                  // Disables hold presses until no key is pressed for ms
+            bindings = <&mo>, <&kp>;
         };
     };
 
@@ -60,7 +73,7 @@
         xxx         &lh LGUI A  &lh LALT S  &lh LCTRL D &lh LSHFT F &kp G           &kp H      &rh RSHFT J &rh RCTRL K &rh LALT L &rh RGUI O_UML &kp A_UML
         xxx         &kp Z       &kp X       &kp C       &kp V       &kp B           &kp N       &kp M       &kp COMMA   &kp DOT     &kp DASH    xxx
     /* ╰───────────┴───────────┴───────────╮                                                                           ╭───────────┴───────────┴───────────╯ */
-                                            &kp ESC     &lt 1 SPACE &kp TAB         &lt 3 ENTER &lt 2 BSPC  &kp DEL
+                                            &kp ESC    &ltc 1 SPACE &kp TAB        &ltc 3 ENTER &ltc 2 BSPC &kp DEL
                                         /* ╰───────────┴───────────┴───────────╯   ╰───────────┴───────────┴───────────╯ */
             >;
         };
@@ -69,8 +82,8 @@
             bindings = <
     /* ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮   ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮ */
         xxx         xxx         xxx         xxx         xxx         xxx            &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 xxx        xxx
-        xxx         &kp LGUI    &kp LALT    &kp LCTRL   &kp LSHFT   xxx             &kp LEFT    &kp UP      &kp DOWN    &kp RIGHT   &kp CAPS    xxx
-        xxx         xxx         xxx         xxx         xxx         xxx             &kp INSERT  &kp HOME    &kp PGUP    &kp PGDN    &kp END     xxx
+        xxx         &kp LGUI    &kp LALT    &kp LCTRL   &kp LSHFT   xxx             &kp LEFT    &kp DOWN    &kp UP      &kp RIGHT   &kp CAPS    xxx
+        xxx         xxx         xxx         xxx         xxx         xxx             &kp HOME    &kp PGUP    &kp PGDN    &kp END     &kp INSERT  xxx
     /* ╰───────────┴───────────┴───────────╮                                                                           ╭───────────┴───────────┴───────────╯ */
                                             xxx         ___         xxx             xxx         xxx         xxx
                                         /* ╰───────────┴───────────┴───────────╯   ╰───────────┴───────────┴───────────╯ */
