@@ -60,7 +60,7 @@
         xxx         &lh LGUI A  &lh LALT S  &lh LCTRL D &lh LSHFT F &kp G           &kp H      &rh RSHFT J &rh RCTRL K &rh LALT L &rh RGUI O_UML &kp A_UML
         xxx         &kp Z       &kp X       &kp C       &kp V       &kp B           &kp N       &kp M       &kp COMMA   &kp DOT     &kp DASH    xxx
     /* ╰───────────┴───────────┴───────────╮                                                                           ╭───────────┴───────────┴───────────╯ */
-                                            &kp ESC     &lt 1 SPACE &kp TAB         &kp ENTER   &lt 2 BSPC  &kp DEL
+                                            &kp ESC     &lt 1 SPACE &kp TAB         &lt 3 ENTER &lt 2 BSPC  &kp DEL
                                         /* ╰───────────┴───────────┴───────────╯   ╰───────────┴───────────┴───────────╯ */
             >;
         };
@@ -85,6 +85,18 @@
         xxx         &kp LT      &kp N1      &kp N2      &kp N3      &kp UMLAU       xxx         xxx         xxx         xxx         xxx         xxx
     /* ╰───────────┴───────────┴───────────╮                                                                           ╭───────────┴───────────┴───────────╯ */
                                             &kp EURO    &kp N0      xxx             xxx         ___         xxx
+                                        /* ╰───────────┴───────────┴───────────╯   ╰───────────┴───────────┴───────────╯ */
+            >;
+        };
+
+        function_layer { // 3
+            bindings = <
+    /* ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮   ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮ */
+        xxx         &kp F12     &kp F7      &kp F8      &kp F9      &kp PSCRN       xxx         xxx         xxx         xxx         xxx         xxx
+        xxx         &kp F11     &kp F4      &kp F5      &kp F6      &kp SLCK        xxx         &kp RSHFT   &kp RCTRL   &kp LALT    &kp RGUI    xxx
+        xxx         &kp F10     &kp F1      &kp F2      &kp F3      &kp PAUSE_BREAK xxx         xxx         xxx         xxx         xxx         xxx
+    /* ╰───────────┴───────────┴───────────╮                                                                           ╭───────────┴───────────┴───────────╯ */
+                                            xxx         xxx         xxx             ___         xxx         xxx
                                         /* ╰───────────┴───────────┴───────────╯   ╰───────────┴───────────┴───────────╯ */
             >;
         };
