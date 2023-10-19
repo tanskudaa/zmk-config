@@ -85,17 +85,17 @@
         ZMK_MACRO(caret,
             wait-ms = <10>;
             tap-ms = <10>;
-            bindings = <&kp F_CRET &kp SPACE>;
+            bindings = <&kp CARET &kp SPACE>;
         )
         ZMK_MACRO(grave,
             wait-ms = <10>;
             tap-ms = <10>;
-            bindings = <&kp F_GRVE &kp SPACE>;
+            bindings = <&kp GRAVE &kp SPACE>;
         )
         ZMK_MACRO(tilde,
             wait-ms = <10>;
             tap-ms = <10>;
-            bindings = <&kp F_TLDE &kp SPACE>;
+            bindings = <&kp TILDE &kp SPACE>;
         )
         // Vim-style nav macros
         ZMK_MACRO(word,
@@ -205,7 +205,7 @@
     /* ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮   ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮ */
         &esc_lgui   &kp Q       &kp W       &kp E       &kp R       &kp T           &kp Y       &kp U       &kp I       &kp O       &kp P       &bspc_del
         &kp TAB     &kp A       &kp S       &kp D       &kp F       &kp G           &kp H       &kp J       &kp K       &kp L       &kp O_UML   &kp A_UML
-        &ctrl_alt   &kp Z       &kp X       &kp C       &kp V       &kp B           &kp N       &kp M       &kp F_COM   &kp F_DOT   &kp F_DASH  &alt_ctrl
+        &ctrl_alt   &kp Z       &kp X       &kp C       &kp V       &kp B           &kp N       &kp M       &kp COMMA   &kp DOT     &kp DASH    &alt_ctrl
     /* ╰───────────┴───────────┴───────────╮                                                                           ╭───────────┴───────────┴───────────╯ */
                                                                            THUMB_CLUSTERS
                                         /* ╰───────────┴───────────┴───────────╯   ╰───────────┴───────────┴───────────╯ */
@@ -215,8 +215,8 @@
         number_layer {
             bindings = <
     /* ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮   ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮ */
-        &esc_lgui   &kp F_PLUS  &kp F_DASH  &kp F_STAR  &kp F_SLSH  &kp F_EQ        &kp F12     &kp F7      &kp F8      &kp F9      xxx         &bspc_del
-        &kp TAB     &kp N1      &kp N2      &kp N3      &kp N4      &kp N5          &kp F11     &kp F4      &kp F5      &kp F6      &kp F_DOT   &kp F_COM
+        &esc_lgui   &kp PLUS    &kp DASH    &kp STAR    &kp SLASH   &kp EQUAL       &kp F12     &kp F7      &kp F8      &kp F9      xxx         &bspc_del
+        &kp TAB     &kp N1      &kp N2      &kp N3      &kp N4      &kp N5          &kp F11     &kp F4      &kp F5      &kp F6      &kp DOT     &kp COMMA
         &ctrl_alt   &kp N6      &kp N7      &kp N8      &kp N9      &kp N0          &kp F10     &kp F1      &kp F2      &kp F3      xxx         &alt_ctrl
     /* ╰───────────┴───────────┴───────────╮                                                                           ╭───────────┴───────────┴───────────╯ */
                                                                            THUMB_CLUSTERS
@@ -239,9 +239,9 @@
         symbol_layer {
             bindings = <
     /* ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮   ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮ */
-        &esc_lgui   &kp F_PLUS  &kp F_DASH  &kp F_STAR  &kp F_SLSH  &kp F_EQ        &kp F_EURO  &kp F_POUN  &kp F_CURR  &caret      &grave      &bspc_del
-        &kp TAB     &kp F_EXCL  &kp F_QUES  &kp F_LBRC  &kp F_RBRC  &kp F_AT        &kp F_HASH  &kp F_LPAR  &kp F_RPAR  &kp F_AMP   &kp F_DQT   &kp F_SQT
-        &ctrl_alt   &kp F_SLSH  &kp F_BSLH  &kp F_LT    &kp F_GT    &kp F_DLLR      &kp F_PRCNT &kp F_LBKT  &kp F_RBKT  &kp F_PIPE  &tilde      &alt_ctrl
+        &esc_lgui   &kp PLUS   &kp DASH     &kp STAR    &kp SLASH   &kp EQUAL       &kp EURO    &kp POUND   &kp CURR    &caret      &grave      &bspc_del
+        &kp TAB     &kp EXCL   &kp QMARK    &kp LBRC    &kp RBRC    &kp AT          &kp HASH    &kp LPAR    &kp RPAR    &kp AMPS    &kp DQT     &kp SQT
+        &ctrl_alt   &kp SLASH  &kp BSLH     &kp LT      &kp GT      &kp DLLR        &kp PRCNT   &kp LBKT    &kp RBKT    &kp PIPE    &tilde      &alt_ctrl
     /* ╰───────────┴───────────┴───────────╮                                                                           ╭───────────┴───────────┴───────────╯ */
                                                                            THUMB_CLUSTERS
                                         /* ╰───────────┴───────────┴───────────╯   ╰───────────┴───────────┴───────────╯ */

@@ -3,6 +3,10 @@
  *
  * SPDX-License-Identifier: MIT
  */
+ 
+// This header redefines most symbol keys, which are prior defined by ZMK.
+// Redefinitions are done to enable swedish/finnish keymap configuration.
+
 #pragma once
 
 #include <dt-bindings/zmk/hid_usage.h>
@@ -10,50 +14,86 @@
 #include <dt-bindings/zmk/modifiers.h>
 #include <dt-bindings/zmk/keys.h>
 
-// Accented letters
-#define A_RNG LEFT_BRACKET // Å
-#define O_UML SEMICOLON    // Ö
-#define A_UML APOSTROPHE   // Ä
+/* Accented letters */
+// Å
+#define A_RNG (ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_LEFT_BRACKET_AND_LEFT_BRACE))
+// Ö
+#define O_UML (ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_SEMICOLON_AND_COLON))
+// Ä
+#define A_UML (ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_APOSTROPHE_AND_QUOTE))
 
-// Basic punctuation
-#define F_COM COMMA  // , Comma
-#define F_DOT PERIOD // . Period
-#define F_DASH SLASH // - Hyphen/Minus
+/* US symbols */
+// ! Exclamation
+#define EXCL (LS(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_1_AND_EXCLAMATION)))
+// @ At sign
+#define AT (RA(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_2_AND_AT)))
+// # Hash
+#define HASH (LS(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_3_AND_HASH)))
+// $ Dollar
+#define DLLR (RA(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_4_AND_DOLLAR)))
+// % Percent
+#define PRCNT (LS(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_5_AND_PERCENT)))
+// ^ Caret (Dead)
+#define CARET (LS(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_RIGHT_BRACKET_AND_RIGHT_BRACE)))
+// & Ampersand
+#define AMPS (LS(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_6_AND_CARET)))
+// * Asterisk/Star
+#define STAR (LS(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_BACKSLASH_AND_PIPE)))
+// ( Left parenthesis
+#define LPAR (LS(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_8_AND_ASTERISK)))
+// ) Right parenthesis
+#define RPAR (LS(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_9_AND_LEFT_PARENTHESIS)))
+// = Equal
+#define EQUAL (LS(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_0_AND_RIGHT_PARENTHESIS)))
+// + Plus
+#define PLUS (ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_MINUS_AND_UNDERSCORE))
+// - Dash/Hyphen/Minus
+#define DASH (ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_SLASH_AND_QUESTION_MARK))
+#define MINUS DASH
+// _ Underscore
+#define UNDER (LS(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_SLASH_AND_QUESTION_MARK)))
+// / Forward slash
+#define SLASH (LS(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_7_AND_AMPERSAND)))
+#define FSLH SLASH
+// ? Question mark
+#define QMARK (LS(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_MINUS_AND_UNDERSCORE)))
+// \ Backslash
+#define BSLH (RA(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_MINUS_AND_UNDERSCORE)))
+// | Pipe
+#define PIPE (RA(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_NON_US_BACKSLASH_AND_PIPE)))
+// ; Semicolon
+#define SEMI (LS(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_COMMA_AND_LESS_THAN)))
+// : Colon
+#define COLON (LS(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_PERIOD_AND_GREATER_THAN)))
+// ' Single quote/Apostrophe
+#define SQT (ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_BACKSLASH_AND_PIPE))
+// " Double quote
+#define DQT (LS(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_2_AND_AT)))
+// < Less than
+#define LT (ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_NON_US_BACKSLASH_AND_PIPE))
+// > Greater than
+#define GT (LS(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_NON_US_BACKSLASH_AND_PIPE)))
+// [ Left bracket
+#define LBKT (RA(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_8_AND_ASTERISK)))
+// { Left brace
+#define LBRC (RA(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_7_AND_AMPERSAND)))
+// ] Right bracket
+#define RBKT (RA(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_9_AND_LEFT_PARENTHESIS)))
+// } Right brace
+#define RBRC (RA(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_0_AND_RIGHT_PARENTHESIS)))
+// ` Grave accent (dead)
+#define GRAVE (LS(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_EQUAL_AND_PLUS)))
+// ~ Tilde (dead)
+#define TILDE (RA(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_RIGHT_BRACKET_AND_RIGHT_BRACE)))
 
-// US symbols
-#define F_EXCL LS(N1)               // ! Exclamation
-#define F_AT RA(N2)                 // @ At sign
-#define F_HASH LS(N3)               // # Hash
-#define F_DLLR RA(N4)               // $ Dollar
-#define F_PRCNT LS(N5)              // % Percent
-#define F_CRET LS(RIGHT_BRACKET)    // ^ Caret (Dead)
-#define F_AMP LS(N6)                // & Ampersand
-#define F_STAR LS(BACKSLASH)        // * Asterisk/Star
-#define F_LPAR LS(N8)               // ( Left parenthesis
-#define F_RPAR LS(N9)               // ) Right parenthesis
-#define F_EQ LS(N0)                 // = Equal
-#define F_PLUS MINUS                // + Plus
-#define F_UNDR QUESTION             // _ Underscore
-#define F_SLSH LS(N7)               // / Forward slash
-#define F_QUES LS(MINUS)            // ? Question mark
-#define F_BSLH RA(MINUS)            // \ Backslash
-#define F_PIPE RA(NON_US_BACKSLASH) // | Pipe
-#define F_SEMI LS(COMMA)            // ; Semicolon
-#define F_COLN LS(PERIOD)           // : Colon
-#define F_SQT BACKSLASH             // ' Single quote/Apostrophe
-#define F_DQT LS(N2)                // " Double quote
-#define F_LT NON_US_BACKSLASH       // < Less than
-#define F_GT LS(NON_US_BACKSLASH)   // > Greater than
-#define F_LBKT RA(N8)               // [ Left bracket
-#define F_LBRC RA(N7)               // { Left brace
-#define F_RBKT RA(N9)               // ] Right bracket
-#define F_RBRC RA(N0)               // } Right brace
-#define F_GRVE LS(EQUAL)            // ` Grave accent (dead)
-#define F_TLDE RA(RIGHT_BRACKET)    // ~ Tilde (dead)
-
-// Additional symbols
-#define F_POUN RA(N3)        // £ Pound
-#define F_EURO RA(E)         // € Euro
-#define F_CURR LS(N4)        // ¤ Currency sign
-#define F_ACUT PLUS          // ´ Acute accent(dead)
-#define F_DIAC RIGHT_BRACKET // ¨ Umlaut (dead)
+/* Additional symbols */
+// £ Pound
+#define POUND (RA(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_3_AND_HASH)))
+// € Euro
+#define EURO (RA(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_E)))
+// ¤ Currency sign
+#define CURR (LS(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_4_AND_DOLLAR)))
+// ´ Acute accent(dead)
+#define ACUTE (LS(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_EQUAL_AND_PLUS)))
+// ¨ Umlaut (dead)
+#define DIAC (ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_RIGHT_BRACKET_AND_RIGHT_BRACE))
