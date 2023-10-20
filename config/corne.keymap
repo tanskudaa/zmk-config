@@ -34,9 +34,9 @@
             label = "LEFT_POSITIONAL_HOLD_TAP";
             #binding-cells = <2>;
             flavor = "tap-preferred";
-            tapping-term-ms = <200>;                        // Produces hold after ms
-            quick-tap-ms = <150>;                           // Produces and holds tap key if pressed again in ms
-            require-prior-idle-ms = <200>;                  // Disables hold presses until no key is pressed for ms
+            tapping-term-ms = <120>;                        // Produces hold after ms
+            quick-tap-ms = <500>;                           // Produces and holds tap key if pressed again in ms
+            require-prior-idle-ms = <100>;                  // Disables hold presses until no key is pressed for ms
             bindings = <&kp>, <&kp>;
             hold-trigger-key-positions = RIGHT_HAND_KEYS;   // Right hand only
         };
@@ -45,9 +45,9 @@
             label = "RIGHT_POSITIONAL_HOLD_TAP";
             #binding-cells = <2>;
             flavor = "tap-preferred";
-            tapping-term-ms = <200>;                        // Produces hold after ms
-            quick-tap-ms = <150>;                           // Produces and holds tap key if pressed again in ms
-            require-prior-idle-ms = <200>;                  // Disables hold presses until no key is pressed for ms
+            tapping-term-ms = <120>;                        // Produces hold after ms
+            quick-tap-ms = <500>;                           // Produces and holds tap key if pressed again in ms
+            require-prior-idle-ms = <100>;                  // Disables hold presses until no key is pressed for ms
             bindings = <&kp>, <&kp>;
             hold-trigger-key-positions = LEFT_HAND_KEYS;    // Left hand only
         };
@@ -56,9 +56,9 @@
             label = "LAYER_TAP_CONFIGURED";
             #binding-cells = <2>;
             flavor = "tap-preferred";
-            tapping-term-ms = <200>;                        // Produces hold after ms
-            quick-tap-ms = <150>;                           // Produces and holds tap key if pressed again in ms
-            require-prior-idle-ms = <200>;                  // Disables hold presses until no key is pressed for ms
+            tapping-term-ms = <120>;                        // Produces hold after ms
+            quick-tap-ms = <500>;                           // Produces and holds tap key if pressed again in ms
+            require-prior-idle-ms = <100>;                  // Disables hold presses until no key is pressed for ms
             bindings = <&mo>, <&kp>;
         };
     };
