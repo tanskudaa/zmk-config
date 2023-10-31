@@ -81,9 +81,9 @@
         navigation_layer { // 1
             bindings = <
     /* ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮   ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮ */
-        xxx         xxx         xxx         xxx         xxx         xxx            &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 xxx        xxx
+        xxx         xxx         xxx         xxx         xxx         xxx            &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 xxx
         xxx         &kp LGUI    &kp LALT    &kp LCTRL   &kp LSHFT   xxx             &kp LEFT    &kp DOWN    &kp UP      &kp RIGHT   &kp CAPS    xxx
-        xxx         xxx         xxx         xxx         xxx         xxx             &kp HOME    &kp PGUP    &kp PGDN    &kp END     &kp INSERT  xxx
+        xxx         xxx         xxx         xxx         xxx         xxx             &kp HOME    &kp PGDN    &kp PGUP    &kp END     &kp INSERT  xxx
     /* ╰───────────┴───────────┴───────────╮                                                                           ╭───────────┴───────────┴───────────╯ */
                                             xxx         ___         xxx             xxx         xxx         xxx
                                         /* ╰───────────┴───────────┴───────────╯   ╰───────────┴───────────┴───────────╯ */
