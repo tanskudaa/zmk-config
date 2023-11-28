@@ -33,25 +33,45 @@
 // Configuration
 / {
     behaviors {
-        lh: left_hand_home_row_mods {
+        lhf: left_hand_home_row_mods_fast {
             compatible = "zmk,behavior-hold-tap";
-            label = "LEFT_POSITIONAL_HOLD_TAP";
+            label = "LEFT_POSITIONAL_HOLD_TAP_FAST";
             #binding-cells = <2>;
             flavor = "tap-preferred";
             tapping-term-ms = <120>;                        // Produces hold after ms
-            quick-tap-ms = <300>;                           // Produces and holds tap key if pressed again in ms
-            require-prior-idle-ms = <100>;                  // Disables hold presses until no key is pressed for ms
+            quick-tap-ms = <200>;                           // Produces and holds tap key if pressed again in ms
             bindings = <&kp>, <&kp>;
             hold-trigger-key-positions = RIGHT_HAND_KEYS;   // Right hand only
         };
-        rh: right_hand_home_row_mods {
+        lhs: left_hand_home_row_mods_slow {
             compatible = "zmk,behavior-hold-tap";
-            label = "RIGHT_POSITIONAL_HOLD_TAP";
+            label = "LEFT_POSITIONAL_HOLD_TAP_SLOW";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <330>;                        // Produces hold after ms
+            quick-tap-ms = <330>;                           // Produces and holds tap key if pressed again in ms
+            require-prior-idle-ms = <200>;                  // Disables hold presses until no key is pressed for ms
+            bindings = <&kp>, <&kp>;
+            hold-trigger-key-positions = RIGHT_HAND_KEYS;   // Right hand only
+        };
+        rhf: right_hand_home_row_mods_fast {
+            compatible = "zmk,behavior-hold-tap";
+            label = "RIGHT_POSITIONAL_HOLD_TAP_FAST";
             #binding-cells = <2>;
             flavor = "tap-preferred";
             tapping-term-ms = <120>;                        // Produces hold after ms
-            quick-tap-ms = <300>;                           // Produces and holds tap key if pressed again in ms
-            require-prior-idle-ms = <100>;                  // Disables hold presses until no key is pressed for ms
+            quick-tap-ms = <200>;                           // Produces and holds tap key if pressed again in ms
+            bindings = <&kp>, <&kp>;
+            hold-trigger-key-positions = LEFT_HAND_KEYS;    // Left hand only
+        };
+        rhs: right_hand_home_row_mods_slow {
+            compatible = "zmk,behavior-hold-tap";
+            label = "RIGHT_POSITIONAL_HOLD_TAP_SLOW";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <330>;                        // Produces hold after ms
+            quick-tap-ms = <330>;                           // Produces and holds tap key if pressed again in ms
+            require-prior-idle-ms = <200>;                  // Disables hold presses until no key is pressed for ms
             bindings = <&kp>, <&kp>;
             hold-trigger-key-positions = LEFT_HAND_KEYS;    // Left hand only
         };
@@ -61,8 +81,7 @@
             #binding-cells = <2>;
             flavor = "tap-preferred";
             tapping-term-ms = <120>;                        // Produces hold after ms
-            quick-tap-ms = <300>;                           // Produces and holds tap key if pressed again in ms
-            require-prior-idle-ms = <100>;                  // Disables hold presses until no key is pressed for ms
+            quick-tap-ms = <200>;                           // Produces and holds tap key if pressed again in ms
             bindings = <&mo>, <&kp>;
         };
     };
@@ -74,7 +93,7 @@
             bindings = <
     /* ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮   ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮ */
         xxx         &kp Q       &kp W       &kp E       &kp R       &kp T           &kp Y       &kp U       &kp I       &kp O       &kp P       &kp A_RNG
-        xxx         &lh LGUI A  &lh LALT S  &lh LCTRL D &lh LSHFT F &kp G           &kp H      &rh RSHFT J &rh RCTRL K &rh LALT L &rh RGUI O_UML &kp A_UML
+        xxx         &lhs LGUI A &lhs LALT S &lhf LCTL D &lhf LSFT F &kp G           &kp H      &rhf RSFT J &rhf RCTL K &rhs LALT L &rhs RGUI O_UML &kp A_UML
         xxx         &kp Z       &kp X       &kp C       &kp V       &kp B           &kp N       &kp M       &kp COMMA   &kp DOT     &kp DASH    xxx
     /* ╰───────────┴───────────┴───────────╮                                                                           ╭───────────┴───────────┴───────────╯ */
                                             &kp ESC    &ltc 1 TAB   &kp SPACE      &ltc 3 ENTER &ltc 2 BSPC &kp DEL
