@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Taneli Hongisto
+ * Copyright (c) 2023-2024 Taneli Hongisto
  *
  * SPDX-License-Identifier: MIT
  */
@@ -20,11 +20,12 @@
 #define PREV C_PREVIOUS
 
 /* Key indexes for reference:
- *
- * 0  1  2  3  4  5    6  7  8  9  10 11
- * 12 13 14 15 16 17   18 19 20 21 22 23
- * 24 25 26 27 28 29   30 31 32 33 34 35
- *          36 37 38   39 40 41
+ * ╭─────────────────╮ ╭─────────────────╮
+ * │ 0  1  2  3  4  5│ │ 6  7  8  9 10 11│
+ * │12 13 14 15 16 17│ │18 19 20 21 22 23│
+ * │24 25 26 27 28 29│ │30 31 32 33 34 35│
+ * ╰────────╮36 37 38│ │39 40 41╭────────╯
+ *          ╰────────╯ ╰────────╯
  */
 
 #define LEFT_HAND_KEYS  <0  1  2  3  4  5  12 13 14 15 16 17 24 25 26 27 28 29 36 37 38>
@@ -118,9 +119,9 @@
     /* ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮   ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮ */
         xxx         &kp SECT    &kp N7      &kp N8      &kp N9      &kp ACUTE       xxx         xxx         xxx         xxx         xxx         xxx
         xxx         &kp PLUS    &kp N4      &kp N5      &kp N6      &kp SQT         xxx         &kp RSHFT   &kp RCTRL   &kp RALT    &kp RGUI    xxx
-        xxx         &kp LT      &kp N1      &kp N2      &kp N3      &kp UMLAU       xxx         xxx         xxx         xxx         xxx         xxx
+        xxx         &kp LT      &kp N1      &kp N2      &kp N3      &kp UMLAU       xxx         xxx         &kp COMMA   &kp DOT     &kp DASH    xxx
     /* ╰───────────┴───────────┴───────────╮                                                                           ╭───────────┴───────────┴───────────╯ */
-                                            &kp EURO    &kp N0      xxx             xxx         ___         xxx
+                                            &kp EURO    &kp N0      &kp SPACE       xxx         ___         xxx
                                         /* ╰───────────┴───────────┴───────────╯   ╰───────────┴───────────┴───────────╯ */
             >;
         };
@@ -138,3 +139,4 @@
         };
     };
 };
+
