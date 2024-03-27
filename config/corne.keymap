@@ -97,7 +97,7 @@
         xxx         &lhs LGUI A &lhs LALT S &lhf LCTL D &lhf LSFT F &kp G           &kp H      &rhf RSFT J &rhf RCTL K &rhs LALT L &rhs RGUI O_UML &kp A_UML
         xxx         &kp Z       &kp X       &kp C       &kp V       &kp B           &kp N       &kp M       &kp COMMA   &kp DOT     &kp DASH    xxx
     /* ╰───────────┴───────────┴───────────╮                                                                           ╭───────────┴───────────┴───────────╯ */
-                                            &kp ESC    &ltc 1 TAB   &kp SPACE      &ltc 3 ENTER &ltc 2 BSPC &kp DEL
+                                            &ltc 4 ESC  &ltc 1 TAB  &kp SPACE      &ltc 3 ENTER &ltc 2 BSPC &kp DEL
                                         /* ╰───────────┴───────────┴───────────╯   ╰───────────┴───────────┴───────────╯ */
             >;
         };
@@ -105,7 +105,7 @@
         navigation_layer { // 1
             bindings = <
     /* ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮   ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮ */
-        xxx         xxx         xxx         xxx         xxx         xxx            &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 xxx
+        xxx         xxx         xxx         xxx         xxx         xxx             xxx         xxx         xxx         xxx         xxx         xxx
         xxx         &kp LGUI    &kp LALT    &kp LCTRL   &kp LSHFT   xxx             &kp LEFT    &kp DOWN    &kp UP      &kp RIGHT   &kp CAPS    xxx
         xxx         xxx         xxx         xxx         xxx         xxx             &kp HOME    &kp PGDN    &kp PGUP    &kp END     &kp PSCRN   xxx
     /* ╰───────────┴───────────┴───────────╮                                                                           ╭───────────┴───────────┴───────────╯ */
@@ -134,6 +134,18 @@
         xxx         &kp F10     &kp F1      &kp F2      &kp F3      &kp V_DEC       xxx         xxx         xxx         xxx         xxx         xxx
     /* ╰───────────┴───────────┴───────────╮                                                                           ╭───────────┴───────────┴───────────╯ */
                                             &kp PREV    &kp PLAY    &kp NEXT        ___         xxx         xxx
+                                        /* ╰───────────┴───────────┴───────────╯   ╰───────────┴───────────┴───────────╯ */
+            >;
+        };
+
+        bluetooth_layer { // 4
+            bindings = <
+    /* ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮   ╭───────────┬───────────┬───────────┬───────────┬───────────┬───────────╮ */
+        xxx         xxx         xxx         xxx         xxx         xxx            &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 xxx
+        xxx         xxx         xxx         xxx         xxx         xxx             xxx         xxx         xxx         xxx         xxx         xxx
+        xxx         xxx         xxx         xxx         xxx         xxx             xxx         xxx         xxx         xxx         xxx         xxx
+    /* ╰───────────┴───────────┴───────────╮                                                                           ╭───────────┴───────────┴───────────╯ */
+                                            ___         xxx         xxx             xxx         xxx         xxx
                                         /* ╰───────────┴───────────┴───────────╯   ╰───────────┴───────────┴───────────╯ */
             >;
         };
